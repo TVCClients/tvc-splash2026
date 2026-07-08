@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Assisted Business Central Testing | TVC Consulting</title>
+    <meta name="description" content="AI-assisted testing for Microsoft Dynamics 365 Business Central migrations, upgrades, extensions, and critical business workflows.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://tvcconsulting.com/business-central-ai-testing/">
+    <meta property="og:title" content="AI-Assisted Business Central Testing | TVC Consulting">
+    <meta property="og:description" content="Test critical Business Central workflows more consistently and document defects before users find them.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tvcconsulting.com/business-central-ai-testing/">
+    <style>
+        :root {
+            --ink: #10223d;
+            --ink-soft: #455b76;
+            --blue: #175cd3;
+            --blue-dark: #0b3c91;
+            --cyan: #1db9d2;
+            --lime: #c7f268;
+            --paper: #ffffff;
+            --wash: #f3f7fb;
+            --line: #d9e3ee;
+            --success: #13795b;
+            --max: 1160px;
+            --shadow: 0 22px 60px rgba(23, 62, 111, .13);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; }
+        .container { width: min(calc(100% - 2.5rem), var(--max)); margin-inline: auto; }
+        .skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 100; padding: .7rem 1rem; background: var(--ink); color: white; }
+        .skip-link:focus { top: 1rem; }
+        .eyebrow { color: var(--blue); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+        h1, h2, h3 { margin: 0; line-height: 1.08; letter-spacing: -.035em; }
+        h1 { max-width: 760px; font-size: clamp(2.75rem, 6.2vw, 5.25rem); }
+        h2 { max-width: 760px; font-size: clamp(2rem, 4vw, 3.35rem); }
+        h3 { font-size: 1.16rem; }
+        p { margin: 0; }
+        section { padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid rgba(217, 227, 238, .8);
+            background: rgba(255, 255, 255, .9);
+            backdrop-filter: blur(16px);
+        }
+        .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; }
+        .brand { color: var(--ink); font-weight: 850; text-decoration: none; letter-spacing: -.025em; }
+        .brand small { display: block; color: var(--ink-soft); font-size: .66rem; font-weight: 650; letter-spacing: .04em; }
+        .nav-label { color: var(--ink-soft); font-size: .82rem; font-weight: 650; }
+        .nav-cta { padding: .65rem .95rem; border-radius: 8px; color: white; background: var(--blue); font-size: .82rem; font-weight: 800; text-decoration: none; }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(5rem, 10vw, 8.5rem) 0 3rem;
+            background:
+                linear-gradient(112deg, rgba(243,247,251,.95) 0 58%, rgba(236,249,251,.9) 58%),
+                var(--wash);
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 30rem;
+            height: 30rem;
+            right: -12rem;
+            top: -15rem;
+            border: 6rem solid rgba(29, 185, 210, .09);
+            border-radius: 50%;
+        }
+        .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.18fr .82fr; gap: clamp(2.5rem, 7vw, 6rem); align-items: center; }
+        .hero h1 { margin: 1.1rem 0 1.45rem; }
+        .hero h1 span { color: var(--blue); }
+        .lede { max-width: 690px; color: var(--ink-soft); font-size: clamp(1.08rem, 2vw, 1.28rem); }
+        .actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; align-items: center; }
+        .button {
+            display: inline-flex;
+            min-height: 52px;
+            align-items: center;
+            justify-content: center;
+            gap: .55rem;
+            padding: .8rem 1.2rem;
+            border: 1px solid var(--blue);
+            border-radius: 8px;
+            color: white;
+            background: var(--blue);
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 12px 30px rgba(23,92,211,.18);
+            transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+        }
+        .button:hover { transform: translateY(-2px); background: var(--blue-dark); box-shadow: 0 17px 35px rgba(23,92,211,.24); }
+        .button.secondary { color: var(--blue); background: transparent; box-shadow: none; }
+        .button.secondary:hover { color: white; background: var(--blue); }
+        a:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+        .microcopy { margin-top: .85rem; color: #667991; font-size: .8rem; }
+
+        .test-card { position: relative; padding: 1.25rem; border: 1px solid #c9d8e8; border-radius: 16px; background: white; box-shadow: var(--shadow); }
+        .test-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); font-size: .72rem; font-weight: 800; letter-spacing: .07em; }
+        .live { display: inline-flex; align-items: center; gap: .45rem; color: var(--success); }
+        .live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #31bd8c; box-shadow: 0 0 0 5px rgba(49,189,140,.12); }
+        .test-name { margin: 1.1rem 0 .9rem; font-weight: 800; }
+        .checks { display: grid; gap: .55rem; }
+        .check { display: grid; grid-template-columns: 28px 1fr auto; gap: .65rem; align-items: center; padding: .72rem; border-radius: 7px; background: var(--wash); font-size: .78rem; }
+        .check b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; color: var(--success); background: #dff7ef; }
+        .check em { color: #75879d; font-size: .67rem; font-style: normal; }
+        .finding { margin-top: .8rem; padding: .85rem; border-left: 3px solid #f5a623; background: #fff8e9; font-size: .75rem; }
+        .finding strong { display: block; margin-bottom: .2rem; color: #91540b; }
+
+        .proof-strip { position: relative; z-index: 2; margin-top: 3.5rem; display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 12px; background: white; box-shadow: 0 12px 34px rgba(24,57,92,.07); }
+        .proof-item { padding: 1rem 1.2rem; border-right: 1px solid var(--line); }
+        .proof-item:last-child { border-right: 0; }
+        .proof-item strong { display: block; font-size: .85rem; }
+        .proof-item span { color: var(--ink-soft); font-size: .73rem; }
+
+        .section-head { display: grid; grid-template-columns: .72fr 1.28fr; gap: 3rem; align-items: end; margin-bottom: 3rem; }
+        .section-head h2 { margin-top: .9rem; }
+        .section-head p { max-width: 620px; color: var(--ink-soft); }
+        .problems { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .problem { padding: 1.7rem; border-top: 4px solid var(--line); background: var(--wash); }
+        .problem:nth-child(2) { border-color: var(--cyan); }
+        .problem h3 { margin-bottom: .7rem; }
+        .problem p { color: var(--ink-soft); font-size: .91rem; }
+
+        .blue-section { color: white; background: var(--blue-dark); }
+        .blue-section .eyebrow { color: var(--lime); }
+        .blue-section .section-head p { color: #c6d5ea; }
+        .capabilities { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .capability { min-height: 210px; padding: 1.5rem; border: 1px solid rgba(255,255,255,.16); border-radius: 10px; background: rgba(255,255,255,.055); }
+        .capability span { display: grid; place-items: center; width: 38px; height: 38px; margin-bottom: 2.5rem; border-radius: 8px; color: var(--lime); background: rgba(199,242,104,.1); font-weight: 850; }
+        .capability p { margin-top: .55rem; color: #c6d5ea; font-size: .88rem; }
+
+        .process { background: var(--wash); }
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+        .process-step { position: relative; padding: 1.5rem 1.6rem 1.5rem 0; border-top: 2px solid #b8c9da; }
+        .process-step::before { content: ""; position: absolute; top: -7px; left: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--blue); }
+        .process-step:not(:last-child)::after { content: "→"; position: absolute; top: 1.2rem; right: 1.1rem; color: #8da3bb; }
+        .process-step small { display: block; margin-bottom: 2rem; color: var(--blue); font-weight: 850; letter-spacing: .1em; }
+        .process-step p { margin-top: .55rem; color: var(--ink-soft); font-size: .85rem; }
+
+        .case-study { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1rem; }
+        .case-copy { padding: clamp(1.8rem, 4vw, 3.4rem); border-radius: 14px; color: white; background: var(--ink); }
+        .case-copy .eyebrow { color: var(--lime); }
+        .case-copy h2 { margin: .9rem 0 1.2rem; }
+        .case-copy > p { color: #c3d0df; }
+        .case-list { margin: 1.6rem 0 0; padding: 0; list-style: none; display: grid; gap: .65rem; }
+        .case-list li { display: flex; gap: .65rem; color: #e4edf7; font-size: .9rem; }
+        .case-list li::before { content: "✓"; color: var(--lime); font-weight: 900; }
+        .case-results { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .result { display: flex; min-height: 150px; flex-direction: column; justify-content: flex-end; padding: 1.3rem; border: 1px solid var(--line); border-radius: 12px; background: white; }
+        .result strong { color: var(--blue); font-size: clamp(1.75rem, 4vw, 2.6rem); line-height: 1; }
+        .result span { margin-top: .5rem; color: var(--ink-soft); font-size: .78rem; }
+
+        .fit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .fit { padding: 1.45rem; border: 1px solid var(--line); border-radius: 10px; }
+        .fit strong { display: block; margin-bottom: .4rem; }
+        .fit p { color: var(--ink-soft); font-size: .87rem; }
+
+        .faq { background: var(--wash); }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        details { padding: 1.25rem 1.35rem; border: 1px solid var(--line); border-radius: 9px; background: white; }
+        summary { cursor: pointer; font-weight: 800; }
+        details p { margin-top: .85rem; color: var(--ink-soft); font-size: .88rem; }
+
+        .cta-section { padding-top: 2rem; }
+        .cta { position: relative; overflow: hidden; padding: clamp(2.2rem, 6vw, 5rem); border-radius: 16px; color: white; background: linear-gradient(120deg, var(--blue) 0%, #0b479e 100%); }
+        .cta::after { content: ""; position: absolute; right: -7rem; bottom: -11rem; width: 25rem; height: 25rem; border: 4.5rem solid rgba(255,255,255,.07); border-radius: 50%; }
+        .cta > * { position: relative; z-index: 1; }
+        .cta .eyebrow { color: var(--lime); }
+        .cta h2 { margin: .9rem 0 1rem; }
+        .cta p { max-width: 650px; color: #dae7fa; }
+        .cta .button { margin-top: 1.7rem; border-color: var(--lime); color: var(--ink); background: var(--lime); box-shadow: none; }
+        .cta .button:hover { background: white; }
+        .cta .microcopy { color: #d5e2f5; }
+
+        footer { margin-top: 5rem; padding: 2.2rem 0; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: .78rem; }
+        .footer-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+        @media (max-width: 900px) {
+            .hero-grid, .section-head, .case-study { grid-template-columns: 1fr; }
+            .hero-grid { gap: 3rem; }
+            .test-card { max-width: 620px; }
+            .problems, .capabilities { grid-template-columns: 1fr; }
+            .capability { min-height: 0; }
+            .capability span { margin-bottom: 1.5rem; }
+            .process-grid { grid-template-columns: 1fr 1fr; gap: 2rem 0; }
+            .process-step:nth-child(2)::after { display: none; }
+        }
+        @media (max-width: 650px) {
+            .container { width: min(calc(100% - 1.4rem), var(--max)); }
+            .nav-label { display: none; }
+            .nav-cta { padding: .55rem .7rem; }
+            .hero { padding-top: 4rem; }
+            .actions, .button { width: 100%; }
+            .proof-strip, .case-results, .fit-grid, .faq-grid, .process-grid { grid-template-columns: 1fr; }
+            .proof-item { border-right: 0; border-bottom: 1px solid var(--line); }
+            .proof-item:last-child { border-bottom: 0; }
+            .process-step::after { display: none; }
+            .check { grid-template-columns: 28px 1fr; }
+            .check em { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header>
+        <div class="container nav">
+            <a class="brand" href="/">TVC Consulting<small>Practical AI for working systems</small></a>
+            <span class="nav-label">Microsoft Dynamics 365 Business Central</span>
+            <a class="nav-cta" data-conversion="fit-review-nav" href="mailto:support@tvcconsulting.com?subject=Business%20Central%20AI%20Testing%20Fit%20Review&amp;body=Company:%0D%0ABusiness%20Central%20project:%0D%0ACritical%20workflow%20to%20test:%0D%0ATarget%20date:%0D%0ABest%20time%20to%20connect:">Request a fit review</a>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div>
+                        <span class="eyebrow">AI-assisted Business Central testing</span>
+                        <h1>Test critical workflows <span>before users do.</span></h1>
+                        <p class="lede">TVC builds supervised AI testing capabilities for Microsoft Dynamics 365 Business Central—executing repeatable tests, checking results, and producing evidence your implementation team can act on.</p>
+                        <div class="actions">
+                            <a class="button" data-conversion="fit-review-hero" href="mailto:support@tvcconsulting.com?subject=Business%20Central%20AI%20Testing%20Fit%20Review&amp;body=Company:%0D%0ABusiness%20Central%20project:%0D%0ACritical%20workflow%20to%20test:%0D%0ATarget%20date:%0D%0ABest%20time%20to%20connect:">Request a 30-minute fit review <span aria-hidden="true">→</span></a>
+                            <a class="button secondary" href="#how-it-works">See how it works</a>
+                        </div>
+                        <p class="microcopy">Start with one important workflow in an approved sandbox. No broad AI initiative required.</p>
+                    </div>
+
+                    <div class="test-card" aria-label="Illustration of an AI-assisted Business Central test run">
+                        <div class="test-top"><span>BC-REG-021</span><span class="live">TEST RUN ACTIVE</span></div>
+                        <div class="test-name">Post and verify a customized transaction</div>
+                        <div class="checks">
+                            <div class="check"><b>✓</b><span>Create record with approved test data</span><em>PASS</em></div>
+                            <div class="check"><b>✓</b><span>Verify rates and calculated totals</span><em>PASS</em></div>
+                            <div class="check"><b>✓</b><span>Release, post, and confirm status</span><em>PASS</em></div>
+                            <div class="check"><b>!</b><span>Compare generated report to expected output</span><em>FINDING</em></div>
+                        </div>
+                        <div class="finding"><strong>Defect evidence prepared</strong>Incorrect report label captured with record ID, PDF, screenshot, and reproduction steps.</div>
+                    </div>
+                </div>
+
+                <div class="proof-strip" aria-label="Business Central project use cases">
+                    <div class="proof-item"><strong>Migrations</strong><span>Validate data and workflows before cutover</span></div>
+                    <div class="proof-item"><strong>Custom extensions</strong><span>Test organization-specific behavior</span></div>
+                    <div class="proof-item"><strong>Upgrades</strong><span>Find regressions before release</span></div>
+                    <div class="proof-item"><strong>Ongoing changes</strong><span>Build reusable regression coverage</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-head">
+                    <div><span class="eyebrow">Why testing breaks down</span><h2>Business Central is standard software—until it isn’t.</h2></div>
+                    <p>Extensions, integrations, migrated data, permissions, reports, and company-specific rules create a testing surface that grows with every release. Manual testing depends on scarce experts remembering every step.</p>
+                </div>
+                <div class="problems">
+                    <article class="problem"><h3>Important paths get missed</h3><p>Teams cover the familiar happy path while exceptions, role differences, and downstream documents receive less attention.</p></article>
+                    <article class="problem"><h3>Experts become the bottleneck</h3><p>The people who understand the process are also handling configuration, training, support, and go-live preparation.</p></article>
+                    <article class="problem"><h3>Defects arrive without evidence</h3><p>Developers lose time recreating failures when reports omit the exact steps, records, expected result, and screenshots.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="blue-section">
+            <div class="container">
+                <div class="section-head">
+                    <div><span class="eyebrow">What the tester does</span><h2>A repeatable QA process, not a chatbot.</h2></div>
+                    <p>The AI tester follows approved procedures in a controlled Business Central environment. It documents what happened and hands uncertain or consequential decisions back to people.</p>
+                </div>
+                <div class="capabilities">
+                    <article class="capability"><span>01</span><h3>Executes workflows</h3><p>Follows detailed test cases through forms, lookups, calculations, status changes, posting, and reports.</p></article>
+                    <article class="capability"><span>02</span><h3>Checks expected results</h3><p>Verifies field values, calculated amounts, record state, generated documents, and end-to-end outcomes.</p></article>
+                    <article class="capability"><span>03</span><h3>Creates usable evidence</h3><p>Produces structured PASS/FAIL logs, screenshots, PDFs, affected records, and developer-ready reproduction steps.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="process" id="how-it-works">
+            <div class="container">
+                <div class="section-head">
+                    <div><span class="eyebrow">How it works</span><h2>Start narrow. Prove value. Expand.</h2></div>
+                    <p>A focused pilot gives the team a measurable result without trying to automate an entire ERP implementation at once.</p>
+                </div>
+                <div class="process-grid">
+                    <article class="process-step"><small>01</small><h3>Select</h3><p>Choose a critical, repeatable workflow with clear expected results.</p></article>
+                    <article class="process-step"><small>02</small><h3>Teach</h3><p>Document the process, approved data, controls, and evidence requirements.</p></article>
+                    <article class="process-step"><small>03</small><h3>Run</h3><p>Execute supervised tests in a designated non-production environment.</p></article>
+                    <article class="process-step"><small>04</small><h3>Improve</h3><p>Review findings, refine unreliable steps, and add regression coverage.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container case-study">
+                <div class="case-copy">
+                    <span class="eyebrow">Field-tested approach</span>
+                    <h2>Developed through a real NAV-to-Business Central migration.</h2>
+                    <p>TVC used AI-assisted testing in a highly customized freight and logistics implementation, converting operational knowledge into repeatable Business Central QA.</p>
+                    <ul class="case-list">
+                        <li>Customer, pricing, transaction, manifest, posting, and reporting workflows</li>
+                        <li>Calculation checks across customer-specific and master rates</li>
+                        <li>Browser-based execution with screenshots and PDF evidence</li>
+                        <li>Regression findings documented for development follow-up</li>
+                    </ul>
+                </div>
+                <div class="case-results" aria-label="Anonymized project results">
+                    <div class="result"><strong>25+</strong><span>documented QA runs in the initial program</span></div>
+                    <div class="result"><strong>End-to-end</strong><span>coverage from master data through posting</span></div>
+                    <div class="result"><strong>Exact</strong><span>calculation and record-state checks</span></div>
+                    <div class="result"><strong>Actionable</strong><span>defect evidence for developers</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section style="padding-top: 1rem;">
+            <div class="container">
+                <div class="section-head">
+                    <div><span class="eyebrow">A strong first use case</span><h2>Where an AI tester fits best.</h2></div>
+                    <p>The best pilot has meaningful business risk, repeats often, consumes expert time, and has results that can be clearly verified.</p>
+                </div>
+                <div class="fit-grid">
+                    <article class="fit"><strong>Migration validation</strong><p>Confirm migrated records, setup, calculations, and operational workflows before cutover.</p></article>
+                    <article class="fit"><strong>Custom extension testing</strong><p>Verify the specialized logic and screens that make your Business Central environment unique.</p></article>
+                    <article class="fit"><strong>Upgrade regression testing</strong><p>Re-run critical workflows after Microsoft updates, extension releases, or configuration changes.</p></article>
+                    <article class="fit"><strong>Document and report QA</strong><p>Compare generated invoices, receipts, and operational reports against expected content and layout.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <div class="container">
+                <div class="section-head">
+                    <div><span class="eyebrow">Common questions</span><h2>Control stays with your team.</h2></div>
+                    <p>The operating boundaries are part of the solution: approved environments, defined credentials, known test data, human review, and clear stop conditions.</p>
+                </div>
+                <div class="faq-grid">
+                    <details><summary>Does the tester operate in production?</summary><p>Testing starts in a designated sandbox or other approved non-production environment. Production access and consequential actions require explicit controls and human approval.</p></details>
+                    <details><summary>Is this an off-the-shelf testing product?</summary><p>No. TVC configures the testing capability around your Business Central workflows, extensions, terminology, data boundaries, and expected outcomes.</p></details>
+                    <details><summary>Will it replace our functional experts?</summary><p>No. Experts define correct behavior and review important findings. The tester increases their capacity by executing repeatable work and collecting evidence.</p></details>
+                    <details><summary>What does a pilot include?</summary><p>A focused pilot typically includes one selected workflow, test design, approved data, supervised execution, evidence standards, findings review, and a recommendation for broader coverage.</p></details>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container cta">
+                <span class="eyebrow">Business Central testing fit review</span>
+                <h2>Bring us one workflow your release cannot afford to break.</h2>
+                <p>We’ll assess whether it is a good candidate for AI-assisted testing, what evidence the tester should produce, and what a focused pilot would require.</p>
+                <a class="button" data-conversion="fit-review-footer" href="mailto:support@tvcconsulting.com?subject=Business%20Central%20AI%20Testing%20Fit%20Review&amp;body=Company:%0D%0ABusiness%20Central%20project:%0D%0ACritical%20workflow%20to%20test:%0D%0ATarget%20date:%0D%0ABest%20time%20to%20connect:">Request a 30-minute fit review <span aria-hidden="true">→</span></a>
+                <p class="microcopy">Direct access to a senior consultant. Start with one workflow.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <span>© 2026 TVC Consulting · Seattle, Washington</span>
+            <span>25+ years of hands-on technology consulting</span>
+        </div>
+    </footer>
+</body>
+</html>
