@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVC Consulting | Your Always-On Web Team</title>
+    <meta name="description" content="TVC deploys an AI-powered web developer for your business — site updates in minutes, every change version-controlled in GitHub, and nothing published without your approval.">
+    <meta name="robots" content="noindex">
+
+    <!-- Link-sharing preview (email, Teams, Slack) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TVC Consulting">
+    <meta property="og:title" content="Your website, updated in minutes — not weeks.">
+    <meta property="og:description" content="An AI-powered web developer on your team: plain-English requests, full version history in GitHub, human approval on every change. It never sleeps. It also never publishes without you.">
+    <meta property="og:url" content="https://tvcconsulting.com/ai-web-content/">
+
+    <!-- Favicon (inline SVG) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230B1220'/%3E%3Cpath d='M25 35h50M50 35v40' stroke='%230078D4' stroke-width='12' stroke-linecap='round'/%3E%3C/svg%3E">
+
+    <style>
+        :root {
+            /* Palette */
+            --bg-base: #0B1220;
+            --primary-blue: #0078D4;
+            --primary-blue-hover: #106EBE;
+            --accent-teal: #0F766E;
+            --text-main: #EAF2FF;
+            --text-muted: #9FB0C7;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.10);
+            --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+
+            /* Spacing */
+            --container-width: 1000px;
+            --section-gap: 5rem;
+        }
+
+        /* Reset & Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Ambient Background Lighting (Misty Light) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(0, 120, 212, 0.15) 0%, rgba(11, 18, 32, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(15, 118, 110, 0.12) 0%, rgba(11, 18, 32, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility: Container */
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #cbdcf5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            color: var(--text-main);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .text-lead {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 2.5rem;
+        }
+
+        .text-small {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        .credibility-line {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin: -1.5rem 0 2rem;
+            max-width: 720px;
+            opacity: 0.9;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary-blue);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-sub {
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .header-link {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .header-link:hover { color: var(--text-main); }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: -1.25rem 0 2.5rem;
+        }
+
+        .hero-tagline .tick {
+            color: var(--accent-teal);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: white;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 14px rgba(0, 120, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-blue-hover);
+            box-shadow: 0 6px 20px rgba(0, 120, 212, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-muted);
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid white;
+            outline-offset: 4px;
+        }
+
+        /* Grids */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+            opacity: 0.9;
+        }
+
+        .callout {
+            margin-top: 2rem;
+            border-left: 4px solid var(--accent-teal);
+        }
+
+        /* Problem list */
+        .fit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .fit-list li {
+            color: var(--text-muted);
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* Pipeline / How it works */
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            position: relative;
+            padding-top: 1rem;
+        }
+
+        .step-number {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            margin-bottom: 0.5rem;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .step-card .step-icon {
+            width: 26px;
+            height: 26px;
+            color: var(--primary-blue);
+            margin-bottom: 0.75rem;
+            opacity: 0.9;
+        }
+
+        /* Terminal card */
+        .terminal {
+            margin-top: 3rem;
+            background: rgba(3, 7, 15, 0.75);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            box-shadow: var(--glass-shadow);
+            overflow: hidden;
+            font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.85rem;
+        }
+
+        .terminal-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .terminal-bar .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .terminal-bar .term-title {
+            margin-left: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: inherit;
+        }
+
+        .terminal-body {
+            padding: 1.5rem 1.25rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            overflow-x: auto;
+        }
+
+        .terminal-body .prompt { color: var(--accent-teal); font-weight: 700; }
+        .terminal-body .req { color: var(--text-main); }
+        .terminal-body .ok { color: #7ddcc8; }
+        .terminal-body .dim { opacity: 0.65; }
+
+        /* Meta proof highlight */
+        .meta-proof {
+            margin-top: 1.5rem;
+            border: 1px solid rgba(15, 118, 110, 0.5);
+            background:
+                radial-gradient(120% 140% at 100% 0%, rgba(15, 118, 110, 0.14) 0%, rgba(11, 18, 32, 0) 55%),
+                var(--glass-bg);
+        }
+
+        .meta-proof code, .commit-strip code {
+            font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.85rem;
+            color: #9fe8dc;
+            background: rgba(15, 118, 110, 0.15);
+            border: 1px solid rgba(15, 118, 110, 0.35);
+            padding: 0.15rem 0.5rem;
+            border-radius: 5px;
+        }
+
+        .commit-strip {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem 1.25rem;
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(15, 118, 110, 0.25);
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .commit-strip a {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        .commit-strip a:hover { color: var(--text-main); }
+
+        /* Team tiers */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .tier-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .tier-now {
+            color: #9fe8dc;
+            background: rgba(15, 118, 110, 0.15);
+            border: 1px solid rgba(15, 118, 110, 0.4);
+        }
+
+        .tier-roadmap {
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .tier-list {
+            margin-top: 1rem;
+        }
+
+        .tier-list li {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            padding: 0.4rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .tier-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-teal);
+        }
+
+        /* Revision log */
+        .revision-log {
+            margin-top: 2rem;
+        }
+
+        .revision-log li {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.25rem;
+            align-items: baseline;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.9rem;
+        }
+
+        .revision-log .rev {
+            font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+            font-weight: 700;
+            color: var(--accent-teal);
+            min-width: 2.5rem;
+        }
+
+        .revision-log .rev-date {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            min-width: 7.5rem;
+        }
+
+        .revision-log .rev-note {
+            color: var(--text-muted);
+        }
+
+        /* Credibility Strip */
+        .credibility-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 3rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Footer / Contact */
+        .footer-cta {
+            margin-top: 6rem;
+            padding-bottom: 4rem;
+        }
+
+        .footer-note {
+            margin-top: 1rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Icons (SVGs) */
+        svg {
+            display: block;
+            fill: currentColor;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 0 3rem;
+            }
+            .text-lead {
+                font-size: 1.1rem;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div class="brand">
+                TVC Consulting
+                <span class="brand-sub">Seattle • Microsoft 365 • Azure</span>
+            </div>
+            <a class="header-link" href="mailto:support@tvcconsulting.com?subject=Always-On%20Web%20Team%20Inquiry">support@tvcconsulting.com</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="container hero">
+            <span class="tag">YOUR ALWAYS-ON WEB TEAM</span>
+            <h1>Your website, updated in minutes — not weeks.</h1>
+            <p class="text-lead">
+                TVC deploys an AI-powered web developer for your business. You describe changes in plain English; it writes the pages, files every change in GitHub with a full history, and waits for your approval before anything goes live.
+            </p>
+            <p class="hero-tagline"><span class="tick">✓</span> It never sleeps. <span class="tick">✓</span> It also never publishes without you.</p>
+            <div class="btn-group">
+                <a href="mailto:support@tvcconsulting.com?subject=Always-On%20Web%20Team&body=Company:%0D%0AWhat%20we%20need%20updated%20or%20produced:%0D%0AWhere%20the%20site%20lives%20today:%0D%0ABest%20times%20to%20connect:" class="btn btn-primary">
+                    Contact Mike
+                </a>
+                <a href="#how" class="btn btn-secondary">See how it works</a>
+            </div>
+            <p class="text-small" style="margin-top: 1rem; opacity: 0.85;">This very page was produced with the exact workflow described below — and you can verify it.</p>
+        </section>
+
+        <!-- Credibility Strip -->
+        <div class="container">
+            <div class="credibility-strip">
+                <span class="badge">Plain-English requests</span>
+                <span class="badge">Full version history</span>
+                <span class="badge">Nothing ships without approval</span>
+                <span class="badge">Runs on Windows + GitHub</span>
+                <span class="badge">Minutes, not sprints</span>
+                <span class="badge">You own every file</span>
+            </div>
+        </div>
+
+        <!-- The Problem -->
+        <section class="container" style="margin-top: 4rem;">
+            <span class="tag">THE BOTTLENECK</span>
+            <h2>Web content shouldn't require a project every time.</h2>
+            <p class="text-small" style="max-width: 720px;">
+                For most established businesses, a simple site change means a developer ticket, an agency invoice, or a page that just sits stale because updating it is too much friction. The content that represents the company ends up being the hardest thing to change.
+            </p>
+            <ul class="fit-list">
+                <li>Small edits wait days behind a dev queue</li>
+                <li>Agencies bill by the hour for one-line changes</li>
+                <li>No clear history of what changed, when, or why</li>
+                <li>Content drifts out of date because updates are painful</li>
+                <li>You can't move your site without re-hiring the vendor</li>
+                <li>"Who has the latest version?" is a real question</li>
+            </ul>
+        </section>
+
+        <!-- How It Works -->
+        <section class="container" id="how" style="margin-top: 6rem;">
+            <span class="tag">HOW IT WORKS</span>
+            <h2>From a plain-English request to a live page — in one short loop.</h2>
+            <p class="text-small" style="max-width: 720px; margin-top: -1.5rem; opacity: 0.85;">
+                AI does the drafting and editing. Git and GitHub provide the safety net. Nothing goes live without a human review.
+            </p>
+            <div class="pipeline">
+                <div class="glass-card step-card">
+                    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <span class="step-number">Step 01</span>
+                    <h3>Describe it</h3>
+                    <p class="text-small">You ask in plain English — "add a services page," "refresh the homepage headline," "publish this announcement."</p>
+                </div>
+                <div class="glass-card step-card">
+                    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    <span class="step-number">Step 02</span>
+                    <h3>AI drafts &amp; edits</h3>
+                    <p class="text-small">Claude Code writes and edits the actual page files on a Windows machine — matching your existing style, structure, and brand.</p>
+                </div>
+                <div class="glass-card step-card">
+                    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span class="step-number">Step 03</span>
+                    <h3>Commit &amp; review</h3>
+                    <p class="text-small">Each change is committed to GitHub — a timestamped, reversible record you can read, approve, or roll back at any point.</p>
+                </div>
+                <div class="glass-card step-card">
+                    <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"></path><path d="m16 6-4 4-4-4"></path><path d="M20 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4"></path></svg>
+                    <span class="step-number">Step 04</span>
+                    <h3>Auto-deploy</h3>
+                    <p class="text-small">On approval, GitHub Pages (or your host) publishes the change automatically — usually live within a minute or two.</p>
+                </div>
+            </div>
+
+            <!-- The request that built this page -->
+            <div class="terminal" role="img" aria-label="The plain-English request that produced this page">
+                <div class="terminal-bar">
+                    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                    <span class="term-title">claude-code — the request that built this page</span>
+                </div>
+                <div class="terminal-body">
+                    <div><span class="prompt">&gt;</span> <span class="req">"Build a TVC page about using AI tools to create web content.</span></div>
+                    <div><span class="req">&nbsp;&nbsp;Match the existing brand. Make it live at tvcconsulting.com/ai-web-content/."</span></div>
+                    <div class="dim" style="margin-top: 0.75rem;">writing ai-web-content/index.html ... done</div>
+                    <div class="dim">git commit -m "Add AI web content POC page" ... done</div>
+                    <div class="dim">git push → GitHub Pages deploy ... done</div>
+                    <div style="margin-top: 0.75rem;"><span class="ok">✓ live</span> <span class="dim">— one file, one commit, minutes from request to published page</span></div>
+                </div>
+            </div>
+
+            <!-- Meta proof -->
+            <div class="glass-card meta-proof">
+                <span class="tag" style="color: var(--accent-teal);">THE PROOF IS THIS PAGE</span>
+                <h3>You're looking at the output right now.</h3>
+                <p class="text-small" style="font-size: 1rem;">
+                    This page wasn't mocked up in a design tool. It was produced by AI in Claude Code on a Windows PC, committed to a GitHub repository, and served live from <code>tvcconsulting.com</code> — the exact loop shown above. Don't take our word for it: the commit record below is fetched live from GitHub.
+                </p>
+                <div class="commit-strip" id="commit-strip">
+                    <span id="commit-info">Latest change: <code>view on GitHub</code></span>
+                    <a href="https://github.com/TVCClients/tvc-splash2026/commits/main/ai-web-content/index.html" target="_blank" rel="noopener">View this page's full history →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Always-On Web Team -->
+        <section class="container" style="margin-top: 6rem;">
+            <span class="tag">THE MODEL</span>
+            <h2>A web developer on your team — not a vendor you schedule.</h2>
+            <p class="text-small" style="max-width: 720px; margin-top: -1.5rem; opacity: 0.85;">
+                The point isn't one fast page. It's that once the loop exists, keeping your site current stops being a project and starts being a standing capability.
+            </p>
+            <div class="tier-grid">
+                <div class="glass-card">
+                    <span class="tier-label tier-now">Available now</span>
+                    <h3>On-demand changes</h3>
+                    <p class="text-small">Anything you'd ask a web developer for, in plain English, turned around in minutes — with a reviewable record of every change.</p>
+                    <ul class="tier-list">
+                        <li>New pages, edits, announcements</li>
+                        <li>Live in minutes after your approval</li>
+                        <li>Every change reversible</li>
+                    </ul>
+                </div>
+                <div class="glass-card">
+                    <span class="tier-label tier-now">Available now</span>
+                    <h3>Scheduled upkeep</h3>
+                    <p class="text-small">The agent works your site on a schedule — auditing for problems and proposing fixes as reviewable changes. It proposes; you approve.</p>
+                    <ul class="tier-list">
+                        <li>Weekly stale-content and broken-link audits</li>
+                        <li>SEO titles, descriptions, structured data</li>
+                        <li>Seasonal and campaign refresh proposals</li>
+                    </ul>
+                </div>
+                <div class="glass-card">
+                    <span class="tier-label tier-roadmap">Roadmap</span>
+                    <h3>Marketing-aware content</h3>
+                    <p class="text-small">Where this is headed: content that keeps pace with your marketing calendar and learns from what performs — always with the same approval gate.</p>
+                    <ul class="tier-list">
+                        <li>Campaign pages tied to ad schedules</li>
+                        <li>Analytics-informed content suggestions</li>
+                        <li>Same rule: nothing ships without you</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="glass-card callout">
+                <span class="tag">NO AI THEATER</span>
+                <h3>The agent works continuously. A senior consultant is accountable for what ships.</h3>
+                <p class="text-small">
+                    The speed comes from AI. The judgment — accuracy, tone, brand, and what's actually true about your business — comes from a human who reviews every change before it goes live. That approval gate is permanent, not a beta caveat.
+                </p>
+            </div>
+        </section>
+
+        <!-- What You Can Produce -->
+        <section class="container" style="margin-top: 6rem;">
+            <span class="tag">WHAT IT PRODUCES</span>
+            <h2>The web content your business actually needs.</h2>
+            <div class="services-grid">
+                <div class="glass-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+                    <h3>Landing &amp; campaign pages</h3>
+                    <p class="text-small">Focused pages for a service, offer, or ad campaign — built fast and matched to your brand.</p>
+                </div>
+                <div class="glass-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+                    <h3>Fast edits &amp; updates</h3>
+                    <p class="text-small">Headlines, pricing, hours, announcements — the small changes that normally never get made.</p>
+                </div>
+                <div class="glass-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <h3>SEO content &amp; metadata</h3>
+                    <p class="text-small">Articles, page titles, descriptions, and structured data — drafted with AI, edited for accuracy and voice before it ships.</p>
+                </div>
+                <div class="glass-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <h3>Multi-page microsites</h3>
+                    <p class="text-small">A small set of connected pages for a product line, event, or initiative — consistent end to end.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why It's Safe -->
+        <section class="container" style="margin-top: 6rem;">
+            <span class="tag">WHY IT'S SAFE FOR BUSINESS</span>
+            <h2>Move fast without giving up control.</h2>
+            <div class="services-grid">
+                <div class="glass-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M13 6h3a2 2 0 0 1 2 2v7"></path><line x1="6" y1="9" x2="6" y2="21"></line></svg>
+                    <h3>Every change is tracked</h3>
+                    <p class="text-small">Git records who changed what, when, and why. Any edit can be reviewed or reversed — nothing is a mystery.</p>
+                </div>
+                <div class="glass-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <h3>Reviewed before it's live</h3>
+                    <p class="text-small">AI proposes; you approve. Content is seen and signed off before it ever reaches the public site.</p>
+                </div>
+                <div class="glass-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <h3>No vendor lock-in</h3>
+                    <p class="text-small">It's plain, portable files in your own GitHub repository. You can host it anywhere and hand it to anyone.</p>
+                </div>
+                <div class="glass-card">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H8a6 6 0 1 1 5.8-7.5 4.5 4.5 0 1 1 3.7 7.5z"></path></svg>
+                    <h3>Runs on what you have</h3>
+                    <p class="text-small">Standard Windows, standard GitHub. No exotic platform to buy, learn, or depend on long-term.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Revision Log -->
+        <section class="container" style="margin-top: 6rem;">
+            <span class="tag">REVISION LOG</span>
+            <h2>Watch this page change.</h2>
+            <p class="text-small" style="max-width: 720px; margin-top: -1.5rem; opacity: 0.85;">
+                Every published revision of this page is listed here — and each one is a git commit you can inspect. Ask for a change and watch it appear.
+            </p>
+            <ul class="revision-log">
+                <li>
+                    <span class="rev">v2</span>
+                    <span class="rev-date">July 13, 2026</span>
+                    <span class="rev-note">Reframed around the always-on web team model; added live commit proof and this revision log.</span>
+                </li>
+                <li>
+                    <span class="rev">v1</span>
+                    <span class="rev-date">July 13, 2026</span>
+                    <span class="rev-note">Initial publish — built by Claude Code from a plain-English request.</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Footer Contact -->
+        <footer class="container footer-cta">
+            <div class="glass-card" style="border-left: 4px solid var(--primary-blue);">
+                <h3>Have a page that needs to change — or one that never got built?</h3>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">No sales layer. Direct access to Mike.</p>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <a href="mailto:support@tvcconsulting.com?subject=Always-On%20Web%20Team" class="btn btn-primary" style="width: fit-content;">Contact Mike</a>
+                    <a href="mailto:support@tvcconsulting.com" style="color: var(--primary-blue); font-weight: 600;">support@tvcconsulting.com</a>
+                </div>
+                <div class="footer-note">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    Your always-on web team — AI-powered, version-controlled, human-approved.
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Live commit proof: fetches this page's latest commit from the public GitHub API.
+         Fails silently to the static "view on GitHub" link if offline or rate-limited. -->
+    <script>
+    (function () {
+        var el = document.getElementById('commit-info');
+        if (!el || !window.fetch) return;
+        fetch('https://api.github.com/repos/TVCClients/tvc-splash2026/commits?path=ai-web-content/index.html&per_page=1')
+            .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+            .then(function (commits) {
+                if (!commits || !commits.length) return;
+                var c = commits[0];
+                var sha = c.sha.substring(0, 7);
+                var date = new Date(c.commit.committer.date);
+                var when = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                var msg = (c.commit.message || '').split('\n')[0];
+                if (msg.length > 60) msg = msg.substring(0, 57) + '...';
+                el.innerHTML = 'Latest change: <code>' + sha + '</code> &nbsp;"' +
+                    msg.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '" &nbsp;· ' + when;
+            })
+            .catch(function () { /* keep static fallback */ });
+    })();
+    </script>
+
+</body>
+</html>
