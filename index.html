@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVC Consulting | Practical AI Modernization</title>
-    <meta name="description" content="Practical AI modernization, Azure engineering, and AI-assisted QA for established businesses that need secure systems, lower cloud waste, and business-aligned technology.">
+    <title>TVC Consulting | AI, Cloud, Business Systems &amp; Hardware</title>
+    <meta name="description" content="Owner-led technology consulting for AI, Microsoft 365, Azure, Business Central, workflow automation, computer hardware, and on-premises AI infrastructure.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://tvcconsulting.com/">
+    <meta property="og:title" content="Practical Technology for Working Businesses | TVC Consulting">
+    <meta property="og:description" content="Put AI, cloud, business systems, and hardware to work without losing control.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tvcconsulting.com/">
     <style>
         :root {
             /* Palette */
@@ -166,6 +172,7 @@
             letter-spacing: -0.01em;
             display: flex;
             flex-direction: column;
+            text-decoration: none;
         }
 
         .brand-sub {
@@ -173,6 +180,27 @@
             font-size: 0.75rem;
             color: var(--text-muted);
             margin-top: 2px;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .header-nav a:hover,
+        .header-nav a:focus-visible {
+            color: white;
+        }
+
+        .header-nav .header-cta {
+            padding: 0.55rem 0.85rem;
+            border-radius: 6px;
+            color: white;
+            background: var(--primary-blue);
         }
 
         /* Glass Cards */
@@ -190,6 +218,19 @@
         .glass-card:hover {
             border-color: rgba(255,255,255,0.2);
             transform: translateY(-2px);
+        }
+
+        .glass-card-link {
+            display: block;
+            text-decoration: none;
+        }
+
+        .service-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #79bfff;
+            font-size: 0.82rem;
+            font-weight: 700;
         }
 
         /* Hero Section */
@@ -380,6 +421,9 @@
             .proof-grid {
                 grid-template-columns: 1fr;
             }
+            .header-nav a:not(.header-cta) {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -388,110 +432,109 @@
     <!-- Header -->
     <header>
         <div class="container header-inner">
-            <div class="brand">
+            <a class="brand" href="/">
                 TVC Consulting
-                <span class="brand-sub">Seattle • Microsoft 365 • Azure</span>
-            </div>
+                <span class="brand-sub">Seattle &bull; AI &bull; Cloud &bull; Business Systems &bull; Hardware</span>
+            </a>
+            <nav class="header-nav" aria-label="Primary navigation">
+                <a href="/services/">Services</a>
+                <a href="/computer-hardware/">Hardware</a>
+                <a class="header-cta" href="mailto:michaelk@tvcconsulting.com?subject=Technology%20Services%20Inquiry">Contact Mike</a>
+            </nav>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
         <section class="container hero">
-            <span class="tag">AI MODERNIZATION</span>
-            <h1>Practical AI Modernization for Microsoft 365, Azure, and Business Systems</h1>
+            <span class="tag">PRACTICAL TECHNOLOGY FOR 2026</span>
+            <h1>Put AI, cloud, business systems, and hardware to work&mdash;without losing control.</h1>
             <p class="text-lead">
-                We help established businesses use AI safely inside the systems they already run: Microsoft 365, Azure, SharePoint, Teams, Outlook/email, and legacy line-of-business applications.
+                TVC helps established small and midsize businesses modernize the systems they already depend on, automate useful work, control cloud cost, and make better infrastructure decisions for the AI era.
             </p>
             <p class="credibility-line">
-                25+ years of hands-on IT consulting, now amplified with AI-native execution for cloud cost control, infrastructure cleanup, and business-aligned systems.
+                Work directly with Mike Kneip, owner of TVC Consulting, for senior judgment and hands-on delivery across Microsoft 365, Azure, Business Central, AI, and computer hardware.
             </p>
             <div class="btn-group">
-                <a href="mailto:support@tvcconsulting.com?subject=AI%20Readiness%20Inquiry&body=Company:%0D%0AIndustry:%0D%0A%23%20of%20users:%0D%0ATop%202%20bottlenecks:%0D%0AWhat%20success%20looks%20like%20in%2060%20days:%0D%0ABest%20times%20to%20connect:" class="btn btn-primary">
-                    Contact Mike
-                </a>
+                <a href="/services/" class="btn btn-primary">Explore services</a>
+                <a href="mailto:michaelk@tvcconsulting.com?subject=Focused%20Technology%20Review&body=Company:%0D%0ATechnology%20decision%20or%20problem:%0D%0AWhat%20success%20would%20look%20like:%0D%0ABest%20time%20to%20connect:" class="btn btn-secondary">Contact Mike</a>
             </div>
-            <p class="text-small" style="margin-top: 1rem; opacity: 0.8;">Start with a focused review of your systems, data, and AI opportunities.</p>
-            <p class="text-small" style="margin-top: 0.5rem; opacity: 0.9;">Use AI to reduce manual work, expose hidden system risk, and modernize without losing control of your data.</p>
+            <p class="text-small" style="margin-top: 1rem; opacity: 0.85;">Start with one important technology decision and a focused review of the business outcome, operating reality, and practical options.</p>
         </section>
 
         <!-- Credibility Strip -->
         <div class="container">
             <div class="credibility-strip">
                 <span class="badge">25+ years</span>
-                <span class="badge">Security-First</span>
-                <span class="badge">Microsoft 365 / Azure</span>
-                <span class="badge">Cloud Cost Control</span>
-                <span class="badge">AI-Assisted QA</span>
+                <span class="badge">Owner-Led Delivery</span>
+                <span class="badge">Microsoft 365 / Azure / Business Central</span>
+                <span class="badge">Hardware Lifecycle</span>
+                <span class="badge">On-Premises AI</span>
                 <span class="badge">On-Site in Greater Seattle</span>
             </div>
         </div>
 
         <!-- What We Do -->
         <section class="container" style="margin-top: 4rem;">
-            <h2>What We Do</h2>
+            <span class="tag">SERVICES</span>
+            <h2>Technology services built around real business decisions.</h2>
             <div class="services-grid">
-                <!-- Card 1 -->
-                <div class="glass-card">
-                    <!-- Icon: Automation -->
+                <a class="glass-card glass-card-link" href="/computer-hardware/">
                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                    <h3>AI Readiness for Microsoft 365</h3>
+                    <h3>Hardware Lifecycle &amp; AI Infrastructure</h3>
                     <p class="text-small">
-                        Permissions hygiene, SharePoint and Teams cleanup, data access review, and practical Copilot guardrails before AI reaches sensitive content.
+                        Plan, source, deploy, manage, and refresh business computers, servers, storage, networking, and new on-premises AI compute.
                     </p>
-                </div>
-                <!-- Card 2 -->
-                <div class="glass-card">
-                    <!-- Icon: Shield/Governance -->
+                    <span class="service-more">Explore hardware services &rarr;</span>
+                </a>
+                <a class="glass-card glass-card-link" href="/services/#m365">
                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    <h3>Secure Custom AI Assistants</h3>
+                    <h3>Microsoft 365 AI Readiness</h3>
                     <p class="text-small">
-                        Useful assistants grounded in approved business data, with controlled access, auditability, and clear limits on what AI can see and do.
+                        Prepare permissions, SharePoint, Teams, OneDrive, data ownership, and Copilot guardrails before AI reaches sensitive content.
                     </p>
-                </div>
-                <!-- Card 3 -->
-                <div class="glass-card">
-                    <!-- Icon: Bot/Helper -->
+                    <span class="service-more">See the readiness service &rarr;</span>
+                </a>
+                <a class="glass-card glass-card-link" href="/services/#automation">
                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path><path d="M12 22v-4"></path><rect x="8" y="8" width="8" height="8" rx="2"></rect></svg>
-                    <h3>Workflow Automation</h3>
+                    <h3>Secure AI Workflow Automation</h3>
                     <p class="text-small">
-                        Reduce manual drag across email, forms, approvals, reporting, file handling, and handoffs between people and systems.
+                        Reduce manual work across email, documents, approvals, reporting, file handling, and handoffs between people and systems.
                     </p>
-                </div>
-                <!-- Card 4 -->
-                <div class="glass-card">
-                    <!-- Icon: Integration/Layers -->
-                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                    <h3>Legacy System Modernization</h3>
-                    <p class="text-small">
-                        Extend the value of older business applications with safer data access, cleaner reporting, and targeted integration with Microsoft cloud tools.
-                    </p>
-                </div>
-                <!-- Card 5 -->
-                <div class="glass-card">
-                    <!-- Icon: Cloud Cost / Engineering -->
-                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H8a6 6 0 1 1 5.8-7.5 4.5 4.5 0 1 1 3.7 7.5z"></path><path d="M8 15h8"></path><path d="M12 11v8"></path></svg>
-                    <h3>AI-Assisted Azure Engineering</h3>
-                    <p class="text-small">
-                        Use AI to accelerate Azure inventory, cost analysis, VM retirement planning, backup cleanup, and resource alignment without losing senior engineering judgment.
-                    </p>
-                </div>
-                <!-- Card 6 -->
-                <div class="glass-card">
-                    <!-- Icon: QA / Checklist -->
+                    <span class="service-more">See workflow services &rarr;</span>
+                </a>
+                <a class="glass-card glass-card-link" href="/business-central-ai-testing/">
                     <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-                    <h3>AI-Assisted Software QA</h3>
+                    <h3>AI-Assisted Business Central QA</h3>
                     <p class="text-small">
-                        Turn essential but repetitive testing into structured test plans, browser-driven checks, defect evidence, and repeatable regression coverage for business systems.
+                        Turn critical workflows into repeatable testing, clear defect evidence, and practical regression coverage for implementation teams.
                     </p>
-                </div>
+                    <span class="service-more">Explore Business Central testing &rarr;</span>
+                </a>
+                <a class="glass-card glass-card-link" href="/services/#azure">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H8a6 6 0 1 1 5.8-7.5 4.5 4.5 0 1 1 3.7 7.5z"></path><path d="M8 15h8"></path><path d="M12 11v8"></path></svg>
+                    <h3>Azure Engineering &amp; Cost Control</h3>
+                    <p class="text-small">
+                        Accelerate Azure inventory, cost analysis, retirement planning, backup cleanup, and resource alignment without losing senior judgment.
+                    </p>
+                    <span class="service-more">See Azure services &rarr;</span>
+                </a>
+                <a class="glass-card glass-card-link" href="/ai-web-content/">
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <h3>AI-Assisted Web Content</h3>
+                    <p class="text-small">
+                        Move from a plain-English request to a reviewed, version-controlled website update without starting a new project every time.
+                    </p>
+                    <span class="service-more">See the always-on web service &rarr;</span>
+                </a>
             </div>
             <div class="glass-card callout">
-                <span class="tag">NO AI THEATER</span>
-                <h3>Practical modernization before novelty.</h3>
+                <span class="tag">START WITH THE DECISION</span>
+                <h3>Technology should help the client succeed.</h3>
                 <p class="text-small">
-                    Before AI can help, your systems, permissions, data, backups, and cloud spend need to be understandable and under control. TVC focuses on the operational work that makes AI useful instead of risky.
+                    TVC begins with the business outcome, operating constraints, accumulated systems and data, and the evidence needed to justify action. The goal is useful progress&mdash;not a product quota or generic AI pitch.
                 </p>
+                <a class="service-more" href="/services/">View all services and starting points &rarr;</a>
             </div>
         </section>
 
@@ -550,34 +593,34 @@
             <ul class="fit-list">
                 <li>Microsoft 365 and Azure environments</li>
                 <li>Email, Teams, and SharePoint-heavy operations</li>
+                <li>Aging computers, servers, storage, or network infrastructure</li>
+                <li>Private, local, or hybrid AI workload decisions</li>
                 <li>Azure resources that have grown faster than the business plan</li>
                 <li>Business Central, ERP, or line-of-business migrations that need practical QA</li>
-                <li>QuickBooks and finance-adjacent workflows</li>
-                <li>Legacy line-of-business applications</li>
                 <li>Custom workflows that live between people, files, and databases</li>
-                <li>Owners who need execution, not another generic AI pitch</li>
+                <li>Owners and decision makers who need execution, not another generic pitch</li>
             </ul>
         </section>
 
         <!-- How We Engage -->
         <section class="container" style="margin-top: 6rem;">
             <h2>How We Engage</h2>
-            <p class="text-small" style="margin-top: -1.5rem; opacity: 0.8;">Senior-led architecture with hands-on delivery.</p>
+            <p class="text-small" style="margin-top: -1.5rem; opacity: 0.8;">Begin in Teams, work on site when useful, and keep senior accountability throughout.</p>
             <div class="process-steps">
                 <div class="step-card">
                     <span class="step-number">Step 01</span>
-                    <h3>Clarity Sprint</h3>
-                    <p class="text-small">1–2 Weeks. We audit your stack, identify the highest-ROI workflow, and define strict success metrics before building anything.</p>
+                    <h3>Focused Review</h3>
+                    <p class="text-small">Clarify the business decision, current environment, risks, and evidence required before recommending a project or purchase.</p>
                 </div>
                 <div class="step-card">
                     <span class="step-number">Step 02</span>
-                    <h3>Pilot</h3>
-                    <p class="text-small">2–6 Weeks. We ship a functional pilot that solves a specific problem. The goal is to save time or reduce risk immediately.</p>
+                    <h3>Practical Pilot</h3>
+                    <p class="text-small">Implement one bounded improvement with explicit success criteria, operating controls, and a result the business can evaluate.</p>
                 </div>
                 <div class="step-card">
                     <span class="step-number">Step 03</span>
-                    <h3>Scale & Govern</h3>
-                    <p class="text-small">Ongoing. We harden the solution, apply governance policies, and expand the pattern to other business units.</p>
+                    <h3>Operate &amp; Improve</h3>
+                    <p class="text-small">Document and support what works, improve the operating model, and expand only while the business case remains clear.</p>
                 </div>
             </div>
         </section>
@@ -585,15 +628,19 @@
         <!-- Footer Contact -->
         <footer class="container footer-cta">
             <div class="glass-card" style="border-left: 4px solid var(--primary-blue);">
-                <h3>Start with a focused AI and systems review.</h3>
+                <h3>Start with one important technology decision.</h3>
                 <p class="text-muted" style="margin-bottom: 1.5rem;">No sales layer. Direct access to Mike.</p>
                 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <a href="mailto:support@tvcconsulting.com?subject=Focused%20AI%20and%20systems%20review" class="btn btn-primary" style="width: fit-content;">Contact Mike</a>
-                    <a href="mailto:support@tvcconsulting.com" style="color: var(--primary-blue); font-weight: 600;">support@tvcconsulting.com</a>
+                    <a href="mailto:michaelk@tvcconsulting.com?subject=Focused%20Technology%20Review" class="btn btn-primary" style="width: fit-content;">Contact Mike</a>
+                    <a href="mailto:michaelk@tvcconsulting.com" style="color: var(--primary-blue); font-weight: 600;">michaelk@tvcconsulting.com</a>
+                    <a href="tel:+12062855370" class="text-small">Main: 206-285-5370</a>
+                    <a href="tel:+12069058639" class="text-small">Mike direct: 206-905-8639</a>
+                    <a href="https://www.linkedin.com/in/michaelkneip/" target="_blank" rel="noopener noreferrer" class="text-small">LinkedIn: Michael Kneip</a>
+                    <address class="text-small" style="font-style: normal;">1211 E Denny Way, #135, Seattle, WA 98122</address>
                 </div>
                 <div class="footer-note">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    Practical AI modernization for Microsoft 365, Azure, and established business systems.
+                    Practical technology across AI, cloud, business systems, and hardware.
                 </div>
             </div>
         </footer>
